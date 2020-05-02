@@ -24,7 +24,6 @@ namespace datacontract
             var expected = File.ReadAllText("./expected.xml").Trim();
             var actual = Serialize(testObject);
             Assert.AreEqual(expected, actual);
-
         }
 
         private String Serialize(EventResult eventResult) {
