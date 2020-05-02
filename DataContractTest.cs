@@ -21,8 +21,9 @@ namespace datacontract
                 }
             };
 
-            var xml = Serialize(testObject);
-            Assert.AreEqual("definitely not right", xml);
+            var expected = File.ReadAllText("./expected.xml").Trim();
+            var actual = Serialize(testObject);
+            Assert.AreEqual(expected, actual);
 
         }
 
@@ -38,7 +39,7 @@ namespace datacontract
             memStream.Seek(0, SeekOrigin.Begin);
             var reader = new StreamReader(memStream);
             var result = reader.ReadToEnd();
-            return result;
+            return result.Trim();
         }
     }
 

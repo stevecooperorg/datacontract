@@ -14,4 +14,7 @@
     <PackageReference Include="System.Runtime.Serialization.Xml" Version="4.3.0" />
   </ItemGroup>
 
+  <Target Name="CopyCustomContent" AfterTargets="BeforeBuild">
+    <Copy SourceFiles="$(ProjectDir)/TestData/expected.xml" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>
