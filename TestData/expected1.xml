@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<EventResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns="RootNamespace">
+<EventResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="RootNamespace">
   <d2p1:Result xmlns:d2p1="OperationResultNamespace">
     <d2p1:Value1>foo</d2p1:Value1>
     <d2p1:Value2>bar</d2p1:Value2>
-  </Result>
+  </d2p1:Result>
 </EventResult>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<EventResult xmlns:i="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="ROOT">
+  <Result xmlns="OPER">
+    <Value1>foo</Value1>
+    <Value2>bar</Value2>
+  </Result>
+</EventResult>
