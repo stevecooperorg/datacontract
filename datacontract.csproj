@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <Target Name="CopyCustomContent" AfterTargets="BeforeBuild">
-    <Copy SourceFiles="$(ProjectDir)/TestData/expected1.xml" DestinationFolder="$(OutDir)" />
-    <Copy SourceFiles="$(ProjectDir)/TestData/expected2.xml" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(ProjectDir)/expected.xml" DestinationFolder="$(OutDir)" />
   </Target>
 </Project>

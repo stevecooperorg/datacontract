@@ -35,7 +35,7 @@ namespace datacontract
     [TestClass]
     public class UnitTest1
     {
-        const string expectedFile = "./expected2.xml";
+        const string expectedFile = "./expected.xml";
 
         [AssemblyInitialize]
         public static void Init(TestContext ctx)
@@ -46,16 +46,21 @@ namespace datacontract
         [TestMethod]
         public void DataContractProducesXml()
         {
-            UseSerializer<OuterType> useDataContract = (xmlWriter, objectGraph) =>
-                new DataContractSerializer(typeof(OuterType)).WriteObject(xmlWriter, objectGraph);
+            UseSerializer<OuterType> useDataContract = (xmlWriter, objectGraph) => {
+                var serializer = new DataContractSerializer(typeof(OuterType));
+                serializer.WriteObject(xmlWriter, objectGraph);
+            };
+                
             AssertSerializerProducesExpectedXmlStructure(useDataContract);
         }
 
         [TestMethod]
         public void XmlSerializerProducesXml()
         {
-            UseSerializer<OuterType> useXmlSerializer = (xmlWriter, objectGraph) =>
-                new XmlSerializer(typeof(OuterType)).Serialize(xmlWriter, objectGraph);
+            UseSerializer<OuterType> useXmlSerializer = (xmlWriter, objectGraph) => {
+                var serializer = new XmlSerializer(typeof(OuterType));
+                serializer.Serialize(xmlWriter, objectGraph);
+            };                
             AssertSerializerProducesExpectedXmlStructure(useXmlSerializer);
         }
          public delegate void UseSerializer<T>(XmlWriter writer, T objectGraph);
