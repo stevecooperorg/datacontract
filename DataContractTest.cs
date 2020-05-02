@@ -11,18 +11,19 @@ using System.Linq;
 
 namespace datacontract
 {   
-    [DataContract(Name = "EventResult", Namespace = "ROOT")]
-    [XmlRoot(Namespace = "ROOT")]
-    public class EventResult
+
+    [DataContract(Namespace = "OUTER")]
+    [XmlRoot(Namespace = "OUTER")]
+    public class OuterType
     {
         [DataMember]
-        [XmlElement(Namespace = "OPER")]
-        public OperationResult Result;
+        [XmlElement(Namespace = "INNER")]
+        public InnerType Result;
     }
 
-    [DataContract(Name = "OperationResult", Namespace = "OPER")]
-    [XmlRoot(Namespace = "OPER")]
-    public class OperationResult
+    [DataContract(Namespace = "INNER")]
+    [XmlRoot(Namespace = "INNER")]
+    public class InnerType
     {
 
         [DataMember]
@@ -45,25 +46,25 @@ namespace datacontract
         [TestMethod]
         public void DataContractProducesXml()
         {
-            UseSerializer<EventResult> useDataContract = (xmlWriter, objectGraph) =>
-                new DataContractSerializer(typeof(EventResult)).WriteObject(xmlWriter, objectGraph);
+            UseSerializer<OuterType> useDataContract = (xmlWriter, objectGraph) =>
+                new DataContractSerializer(typeof(OuterType)).WriteObject(xmlWriter, objectGraph);
             AssertSerializerProducesExpectedXmlStructure(useDataContract);
         }
 
         [TestMethod]
         public void XmlSerializerProducesXml()
         {
-            UseSerializer<EventResult> useXmlSerializer = (xmlWriter, objectGraph) =>
-                new XmlSerializer(typeof(EventResult)).Serialize(xmlWriter, objectGraph);
+            UseSerializer<OuterType> useXmlSerializer = (xmlWriter, objectGraph) =>
+                new XmlSerializer(typeof(OuterType)).Serialize(xmlWriter, objectGraph);
             AssertSerializerProducesExpectedXmlStructure(useXmlSerializer);
         }
          public delegate void UseSerializer<T>(XmlWriter writer, T objectGraph);
 
-        private void AssertSerializerProducesExpectedXmlStructure(UseSerializer<EventResult> serializer) {
+        private void AssertSerializerProducesExpectedXmlStructure(UseSerializer<OuterType> serializer) {
             // create a test object;
-            var testObject = new EventResult
+            var testObject = new OuterType
             {
-                Result = new OperationResult
+                Result = new InnerType
                 {
                     Value1 = "foo",
                     Value2 = "bar"
